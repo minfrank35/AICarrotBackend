@@ -3,13 +3,13 @@ plugins {
     id 'war'
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'com.labscale'
 version = '0.0.1'
 
 java {
-    sourceCompatibility = '17'
 }
 
 configurations {
@@ -46,12 +46,20 @@ dependencies {
     implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
 
     //mybatis
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
+    //aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
+    //log4j
+    implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
 }

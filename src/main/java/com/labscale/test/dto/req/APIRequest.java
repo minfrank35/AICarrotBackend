@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LocationReqDTO {
-    private double latitude;
-    private double longitude;
+public class APIRequest<T> {
+    private String apiSecretKey;
+    private T data;
 }

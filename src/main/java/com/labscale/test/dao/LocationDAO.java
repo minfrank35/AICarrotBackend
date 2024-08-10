@@ -8,6 +8,15 @@ import java.util.List;
 
 @Mapper
 public interface LocationDAO {
-    @Select("SELECT local_name FROM locations WHERE latitude != #{latitude} AND longitude != #{longitude}")
+    @Select("""
+    SELECT CONCAT_WS(' ', sido, si_gun_gu, dong) AS full_address
+    FROM location
+    WHERE (
+        6371 * acos(
+            cos(radians(#{latitude})) * cos(radians(latitude)) * cos(radians(longitude) - radians(#{longitude}))
+            + sin(radians(#{latitude})) * sin(radians(latitude))
+        )
+    ) <= 5
+    """)
     List<String> findLocalNamesByCoordinates(@Param("latitude") double latitude, @Param("longitude") double longitude);
 }

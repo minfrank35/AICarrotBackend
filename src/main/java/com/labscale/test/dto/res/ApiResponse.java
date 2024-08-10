@@ -1,7 +1,9 @@
 package com.labscale.test.dto.res;
 
+import lombok.Getter;
 import lombok.Setter;
 
+@Getter
 @Setter
 // 공통 응답 DTO
 public class ApiResponse<T> {
