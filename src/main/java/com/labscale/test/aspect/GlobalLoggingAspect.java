@@ -39,6 +39,8 @@ public class GlobalLoggingAspect {
         }
     }
 
+
+
     @Around("allControllerMethods()")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         LocalDateTime startTime = LocalDateTime.now();

@@ -21,9 +21,6 @@ public class TestContoller {
     // 위치 찾기 API
     @PostMapping("/locationlist")
     public ApiResponse<LocationResDTO> findLocation(@RequestBody APIRequest<LocationReqDTO> req) {
-        // API secretKey 체크 BeforeAdvice는 AOP로
-        // request Log 생성 BeforeAdvice는 AOP로
-
         // `req`에서 `data` 필드를 추출하고, 위도와 경도를 가져옴
         LocationReqDTO locationData = req.getData();
         double latitude = locationData.getLatitude();
@@ -31,7 +28,6 @@ public class TestContoller {
 
         // 위도와 경도 값 바탕으로 resData 생성
         LocationResDTO res = locationService.getLocationData(latitude, longitude);
-        // response Log 생성 After Advice
 
         // 리턴값 생성
         ApiResponse<LocationResDTO> response = new ApiResponse<>();
